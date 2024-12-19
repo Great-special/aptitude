@@ -1,0 +1,380 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block main %}
+    <!-- START SLIDER AREA -->
+        <div class="slider-area slider-2 section">
+            <div class="bend niceties preview-2">
+                <div id="nivoslider-2" class="slides">   
+                    <img src="{% static 'img/slider/slider-2/slider-1.jpg' %}" alt="" title="#slider-direction-1"  />
+                    <img src="{% static 'img/slider/slider-2/slider-1.jpg' %}" alt="" title="#slider-direction-2"  />
+                </div>
+                <!-- ===== direction 1 ===== -->
+                <div id="slider-direction-1" class="slider-direction">
+                    <div class="slider-content-1">
+                        <div class="title-container">
+                            <div class="wow rotateInDownLeft" data-wow-duration="2s" data-wow-delay="0.5s">
+                                <h6 class="slider2-title-1">Best price : $866</h6>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                                <h1 class="slider2-title-2">new smart phone</h1>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">
+                                <h2 class="slider2-title-3">Samsung grand 6</h2>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
+                                <p class="slider2-title-4">There are many variations of passages of Lorem Ipsum availables, but the majority have suffered alteration in some form.</p>
+                            </div>
+                            <div class="slider-button wow fadeInUp" data-wow-duration="1s" data-wow-delay="2.5s">
+                                <a href="#" class="button extra-small">
+                                    <span class="text-uppercase">Buy now</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- layer 1 -->
+                    <div class="slider-content-1-image">
+                        <div class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
+                            <div class="layer-1-1">
+                                <img src="{% static 'img/slider/slider-2/layer-1.png' %}" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ===== direction 2 ===== -->
+                <div id="slider-direction-2" class="slider-direction">
+                    <div class="slider-content-2">
+                        <div class="title-container">
+                            <div class="wow rotateInDownLeft" data-wow-duration="2s" data-wow-delay="0.5s">
+                                <h6 class="slider2-title-1">Best price : $866</h6>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                                <h1 class="slider2-title-2">new smart phone</h1>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">
+                                <h2 class="slider2-title-3">Samsung grand 6</h2>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="2s">
+                                <p class="slider2-title-4">There are many variations of passages of Lorem Ipsum availables, but the majority have suffered alteration in some form.</p>
+                            </div>
+                            <div class="slider-button wow fadeInUp" data-wow-duration="1s" data-wow-delay="2.5s">
+                                <a href="#" class="button extra-small ">
+                                    <span class="text-uppercase">Buy now</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- layer 1 -->
+                    <div class="wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                        <div class="layer-1-1 layer-2-1">
+                            <img src="{% static 'img/slider/slider-2/layer-2.png' %}" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <!-- ==== -->
+            </div>
+        </div>
+        <!-- END SLIDER AREA -->
+
+        <!-- START PAGE CONTENT -->
+        <section id="page-content" class="page-wrapper section">
+
+            <!-- BANNER-SECTION START -->
+            <div class="banner-section ptb-60">
+                <div class="container">
+                    <div class="df">
+      
+                        <!-- banner-item start -->
+                        <div class="col-lg-4 col-md-6 d-block d-md-none d-lg-block banner-mine-2">
+                           
+                            
+                            <div class="down">
+                                <div class="btn-card">
+                                    <a href="{% url "courses_page" %}" >view More <i class="zmdi zmdi-long-arrow-right"></i></a> 
+                                </div>
+                            </div>
+                        </div>
+                        <!-- banner-item end -->
+                        <!-- banner-item start -->
+                            <div class="col-lg-4 col-md-6 d-block d-md-none d-lg-block banner-mine-1">
+                            
+                                
+                                <div class="down">
+                                    <div class="btn-card">
+                                        <a href="{% url "contact_page" %}" >view More <i class="zmdi zmdi-long-arrow-right"></i></a> 
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- banner-item end -->
+                        <!-- banner-item start -->
+                        <div class="col-lg-4 col-md-6 d-block d-md-none d-lg-block banner-mine-3">
+                            <div class="down">
+                                <div class="btn-card">
+                                    <a href="{% url "product_page" %}">view More <i class="zmdi zmdi-long-arrow-right"></i></a> 
+                                </div>
+                            </div>
+                        </div>
+                        <!-- banner-item end -->
+                    </div>
+                </div>
+            </div> 
+            <!-- BANNER-SECTION END --> 
+
+            <!-- FEATURED PRODUCT SECTION START -->
+            <div class="featured-product-section section-bg-tb pt-80 pb-55">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-title text-start mb-20">
+                                <h2 class="uppercase">new courses</h2>
+                                <h6>There are many variations of passages of brands available,</h6>
+                                <div class="featured-product">
+                                    <div class="active-featured-product slick-arrow-2">
+                                        {% for product in new_products %}
+                                        <div class="product-item product-item-2">
+                                            <div class="product-img">
+                                                <a href="{% url "product_detail" product.id %}">
+                                                    <img src="{{product.get_image}}" alt=""/>
+                                                </a>
+                                            </div>
+                                            <div class="product-info">
+                                                <h6 class="product-title">
+                                                    <a href="{% url "product_detail" product.id %}">{{product.title}}</a>
+                                                </h6>
+                                                <h6 class="brand-name">{{product.category}}</h6>
+                                                <h3 class="pro-price">$ {{product.price}}</h3>
+                                            </div>
+                                            <ul class="action-button">
+                                                <li>
+                                                    <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
+                                                </li>
+                                           
+                                                <li>
+                                                    <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>          
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+            <!-- FEATURED PRODUCT SECTION END -->
+
+
+            <!-- PRODUCT TAB SECTION START -->
+            <div class="product-tab-section section-bg-tb pt-80 pb-55">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="section-title text-start mb-40">
+                                <h2 class="uppercase">product list</h2>
+                                <h6>There are many variations of passages of brands available,</h6>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="product-tab pro-tab-menu pro-tab-menu-2 text-end">
+                                <!-- Nav tabs -->
+                                <ul class="nav" >
+                                    <li><a class="active" href="#popular-product" data-bs-toggle="tab">Products </a></li>
+                                    <li><a href="#special-offer"  data-bs-toggle="tab">Special Offer</a></li>
+                                </ul>
+                            </div>                       
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <!-- popular-product start -->
+                                <div id="popular-product" class="tab-pane active show">
+                                    <div class="row">
+                                        {% for product in products %}
+                                        <!-- product-item start -->
+                                        <div class="col-lg-3 col-md-4">
+                                            <div class="product-item product-item-2">
+                                                <div class="product-img">
+                                                    <a href="single-product.html">
+                                                        <img src="{{product.get_image}}" alt="" />
+                                                    </a>
+                                                </div>
+                                                <div class="product-info">
+                                                    <h6 class="product-title">
+                                                        <a href="single-product.html">{{product.title}}</a>
+                                                    </h6>
+                                                    <h6 class="brand-name">{{product.category}}</h6>
+                                                    <h3 class="pro-price">$ {{product.price}}</h3>
+                                                </div>
+                                                <ul class="action-button">
+                                                    <li>
+                                                        <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
+                                                    </li>
+                                               
+                                                    <li>
+                                                        <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- product-item end -->
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <!-- popular-product end -->
+                                <!-- special-offer start -->
+                                <div id="special-offer" class="tab-pane" role="tabpanel">
+                                    <div class="row">
+                                        {% for product in special %}
+                                        <!-- product-item start -->
+                                        <div class="col-lg-3 col-md-4">
+                                            <div class="product-item product-item-2">
+                                                <div class="product-img">
+                                                    <a href="single-product.html">
+                                                        <img src="{{product.get_image}}" alt="" />
+                                                    </a>
+                                                </div>
+                                                <div class="product-info">
+                                                    <h6 class="product-title">
+                                                        <a href="single-product.html">{{product.title}}</a>
+                                                    </h6>
+                                                    <h6 class="brand-name">{{product.category}}</h6>
+                                                    <h3 class="pro-price">$ {{product.price}}</h3>
+                                                </div>
+                                                <ul class="action-button">
+                                                    <li>
+                                                        <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
+                                                    </li>
+                                               
+                                                    <li>
+                                                        <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- product-item end -->
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <!-- special-offer end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PRODUCT TAB SECTION END -->
+
+            <!-- BLOG SECTION START -->
+            <div class="blog-section-2 pt-60 pb-30">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-title text-start mb-40">
+                                <h2 class="uppercase">Latest Product</h2>
+                                <h6>There are many variations of passages of brands available,</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blog">
+                        <div class="row active-blog-2">
+                            <!-- blog-item start -->
+                            <div class="col-lg-12">
+                                <div class="blog-item-2">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="blog-image">
+                                                <a href="single-blog.html"><img src="{% static 'img/blog/4.jpg' %}" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="blog-desc">
+                                                <h5 class="blog-title-2"><a href="#">dummy Blog name</a></h5>
+                                                <p>There are many variations of passages of in psum available, but the majority have sufe ered on in some form...</p>
+                                                <div class="read-more">
+                                                    <a href="#">Read more</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- blog-item end -->
+                            <!-- blog-item start -->
+                            <div class="col-lg-12">
+                                <div class="blog-item-2">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="blog-image">
+                                                <a href="single-blog.html"><img src="{% static 'img/blog/5.jpg' %}" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="blog-desc">
+                                                <h5 class="blog-title-2"><a href="#">dummy Blog name</a></h5>
+                                                <p>There are many variations of passages of in psum available, but the majority have sufe ered on in some form...</p>
+                                                <div class="read-more">
+                                                    <a href="#">Read more</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- blog-item end -->
+                            <!-- blog-item start -->
+                            <div class="col-lg-12">
+                                <div class="blog-item-2">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="blog-image">
+                                                <a href="single-blog.html"><img src="{% static 'img/blog/4.jpg' %}" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="blog-desc">
+                                                <h5 class="blog-title-2"><a href="#">dummy Blog name</a></h5>
+                                                <p>There are many variations of passages of in psum available, but the majority have sufe ered on in some form...</p>
+                                                <div class="read-more">
+                                                    <a href="#">Read more</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- blog-item end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- BLOG SECTION END -->   
+             
+            <!-- NEWSLETTER SECTION START -->
+            <div class="newsletter-section section-bg-tb pt-60 pb-80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2">
+                            <div class="newsletter">
+                                <div class="newsletter-info text-center">
+                                    <h2 class="newsletter-title">get a newsletter</h2>
+                                    <p>Make sure that you never miss our interesting news <br class="hidden-xs">by joining our newsletter program.</p>
+                                </div>
+                                <div class="subcribe clearfix">
+                                    <form action="#">
+                                        <input type="text" name="email" placeholder="Enter your email here..."/>
+                                        <button class="submit-btn-2 btn-hover-2" type="submit">subcribe</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- NEWSLETTER SECTION END -->            
+        </section>
+        <!-- END PAGE CONTENT -->
+
+{% endblock main %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Courses{% endblock title %}
+
+{% block main %}
+    <!-- BREADCRUMBS SETCTION START -->
+    <div class="breadcrumbs-section plr-200 mb-80 section">
+        <div class="breadcrumbs overlay-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumbs-inner">
+                            <h1 class="breadcrumbs-title">Courses</h1>
+                            <p class="subtitle text-center">Explore our courses and book your appointment today!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMBS SETCTION END -->
+
+    <!-- Card Container Section -->
+    <section class="gcard-container">
+        <div class="gcontainer">
+            {% for course in courses %}
+            <div class="gcard">
+                <img src="{{course.get_image}}" alt="{{course.title}}" class="gcard-image">
+                <div class="gcard-content">
+                    <h3>{{course.title}}</h3>
+                    <p>{{course.description|truncatewords:25}}</p>
+                    <button class="book-button">Book Appointment</button>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </section>
+{% endblock %}
