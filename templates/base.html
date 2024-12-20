@@ -111,7 +111,7 @@
                                         <li><a ><i class="zmdi zmdi-view-headline"></i></a>
                                             <ul>
                                                 <li><a href="{% url "profile" %}">My Account</a></li>
-                                                <li><a href="./checkout.html">Checkout</a></li>
+                                                <li><a href="{% url "checkout" %}">Checkout</a></li>
                                                 <li><a href="{% url "login" %}">Log in</a></li>        
                                             </ul>
                                         </li>
@@ -122,7 +122,7 @@
                                     <div class="total-cart-in">
                                         <div class="cart-toggler">
                                             <a href="{% url 'cart_page' %}">
-                                                <span class="cart-quantity">02</span><br>
+                                                <span class="cart-quantity">{{len_cart}}</span><br>
                                                 <span class="cart-icon">
                                                     <i class="zmdi zmdi-shopping-cart-plus"></i>
                                                 </span>

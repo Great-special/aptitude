@@ -48,13 +48,14 @@ def courses_page(request):
 
 
 def cart_page(request):
+    tab = 'cart'
     cart_items = _get_cart_items(request)
     total_price = sum(item.get('qty', 0) * float(item.get('price', 0)) for item in cart_items)
     
     return render(request, 'cart.html', {
-        'cart_length': len(cart_items),
         'cart_items': cart_items,
         'total_price': total_price,
+        'tab':tab,
     })
 
 def product_detail_page(request, id):
@@ -118,27 +119,27 @@ def add_cart(request, pk):
 	return redirect(referer_url)
 
 def view_cart(request):
+    tab = 'cart'
     cart_items = _get_cart_items(request)
     total_price = sum(item.get('qty', 0) * float(item.get('price', 0)) for item in cart_items)
     
-    return render(request, 'cart-page.html', {
-        'cart_length': len(cart_items),
+    return render(request, 'cart.html', {
         'cart_items': cart_items,
         'total_price': total_price,
+        'tab':tab,
     })
 
 
 
 def check_out(request):
+    tab = 'check_out'
+    cart = _get_cart_items(request)
+    total_price = sum(int(item.get('qty', 0)) * float(item.get('price', 0)) for item in cart)
     if request.method == "POST":
-        cart = _get_cart_items(request)
-        
         # Basic validation
         if not cart:
             messages.error(request, "Your cart is empty")
             return redirect('view_cart')
-        
-        total_price = sum(int(item.get('qty', 0)) * float(item.get('price', 0)) for item in cart)
         
         # Create an order in the database
         order = Order.objects.create(user=request.user, total_price=total_price)
@@ -170,7 +171,12 @@ def check_out(request):
         
         return redirect('home_page')
     
-    return redirect('view_cart')
+    return render(request, 'cart.html', {
+        'cart_items': cart,
+        'total_price': total_price,
+        'tab':tab,
+    })
+
 
 def to_wish_list(request, pk):
     wishlist = _get_wishlist(request)
@@ -191,6 +197,19 @@ def to_wish_list(request, pk):
     
     request.session[settings.WISH_ID] = json.dumps(wishlist)
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def view_wish_list(request):
+    tab = 'wish_list'
+    wishlist = _get_wishlist(request)
+    cart = _get_cart_items(request)
+    
+    
+    return render(request, 'cart.html', {
+        'wish_list': wishlist,
+        'cart_items': cart,
+        'tab':tab,
+    })
+
 
 def _get_cart_items(request):
     cart_data = request.session.get(settings.CART_ID, '[]')

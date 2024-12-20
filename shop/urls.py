@@ -8,9 +8,13 @@ urlpatterns = [
     path('contact_page/', views.contact_page, name='contact_page'),
     path('courses/', views.courses_page, name='courses_page'),
     path('cart_page/', views.cart_page, name="cart_page"),
+    path('add-cart/<int:pk>/', views.add_cart, name='add_cart'),
+    path('cart-details/', views.view_cart, name='view_cart'),
     path('checkout/', views.check_out, name='checkout'),
     path('product/<int:id>/detail/', views.product_detail_page, name='product_detail'),
     path('product-category/<int:pk>/', views.product_category_id, name="product_category_id"),
-    path('feedback/', views.get_feedback, name='get_feedback')
+    path('feedback/', views.get_feedback, name='get_feedback'),
+    path('wish-list/<int:pk>/', views.to_wish_list, name='wish_list'),
+    path('wish-list/items/', views.view_wish_list, name="wish_list_item")
 ]
 

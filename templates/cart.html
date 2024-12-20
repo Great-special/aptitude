@@ -61,7 +61,7 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <!-- shopping-cart start -->
-                        <div class="tab-pane active" id="shopping-cart">
+                        <div class="tab-pane {% if tab == 'cart' %}active{% endif %}" id="shopping-cart">
                             <div class="shopping-cart-content">
                                 <form action="#">
                                     <div class="table-content table-responsive mb-50">
@@ -102,58 +102,7 @@
                                                         <a href="#"><i class="zmdi zmdi-close"></i></a>
                                                     </td>
                                                 </tr>
-                                                <!-- tr -->
-                                                <tr>
-                                                    <td class="product-thumbnail">
-                                                        <div class="pro-thumbnail-img">
-                                                            <img src="img/cart/2.jpg" alt="">
-                                                        </div>
-                                                        <div class="pro-thumbnail-info text-start">
-                                                            <h6 class="product-title-2">
-                                                                <a href="#">dummy product name</a>
-                                                            </h6>
-                                                            <p>Brand: Brand Name</p>
-                                                            <p>Model: Grand s2</p>
-                                                            <p> Color: Black, White</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="product-price">$560.00</td>
-                                                    <td class="product-quantity">
-                                                        <div class="cart-plus-minus f-left">
-                                                            <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                                        </div> 
-                                                    </td>
-                                                    <td class="product-subtotal">$1020.00</td>
-                                                    <td class="product-remove">
-                                                        <a href="#"><i class="zmdi zmdi-close"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <!-- tr -->
-                                                <tr>
-                                                    <td class="product-thumbnail">
-                                                        <div class="pro-thumbnail-img">
-                                                            <img src="img/cart/3.jpg" alt="">
-                                                        </div>
-                                                        <div class="pro-thumbnail-info text-start">
-                                                            <h6 class="product-title-2">
-                                                                <a href="#">dummy product name</a>
-                                                            </h6>
-                                                            <p>Brand: Brand Name</p>
-                                                            <p>Model: Grand s2</p>
-                                                            <p> Color: Black, White</p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="product-price">$560.00</td>
-                                                    <td class="product-quantity">
-                                                        <div class="cart-plus-minus f-left">
-                                                            <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                                        </div> 
-                                                    </td>
-                                                    <td class="product-subtotal">$1020.00</td>
-                                                    <td class="product-remove">
-                                                        <a href="#"><i class="zmdi zmdi-close"></i></a>
-                                                    </td>
-                                                </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -217,7 +166,7 @@
                         </div>
                         <!-- shopping-cart end -->
                         <!-- wishlist start -->
-                        <div class="tab-pane" id="wishlist">
+                        <div class="tab-pane {% if tab == 'wish_list' %}active{% endif %}" id="wishlist">
                             <div class="wishlist-content">
                                 <form action="#">
                                     <div class="table-content table-responsive mb-50">
@@ -318,7 +267,7 @@
                         </div>
                         <!-- wishlist end -->
                         <!-- checkout start -->
-                        <div class="tab-pane" id="checkout">
+                        <div class="tab-pane {% if tab == 'check_out' %}active{% endif %}" id="checkout">
                             <div class="checkout-content box-shadow p-30">
                                 <form action="#">
                                     <div class="row">
@@ -442,7 +391,7 @@
                         </div>
                         <!-- checkout end -->
                         <!-- order-complete start -->
-                        <div class="tab-pane" id="order-complete">
+                        <div class="tab-pane {% if tab == 'order_complete' %}active{% endif %}" id="order-complete">
                             <div class="order-complete-content box-shadow">
                                 <div class="thank-you p-30 text-center">
                                     <h6 class="text-black-5 mb-0">Thank you. Your order has been received.</h6>
