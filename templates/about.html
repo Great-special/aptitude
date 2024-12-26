@@ -31,25 +31,37 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title text-start ">
-                        <h2 class="uppercase">about Aptitude Integrated Services</h2>
-                        <h6 class="mb-40">There are many variations of passages of brands available,</h6>
+                        <h2 class="uppercase">{% if about.title %}
+                        {{about.title}}
+                        {% else %}
+                        about Aptitude Integrated Services
+                        {% endif %}</h2>
+                        <h6 class="mb-40">{% if about.subtitle  %}
+                        {{about.subtitle}}
+                        {% else %}
+                        There are many variations of passages of brands available,
+                        {% endif %}</h6>
                     </div>
                 </div>
             </div>                    
             <div class="row">
                 <div class="col-lg-5">
                     <div class="about-photo p-20 bg-img-1">
-                        <img src="{% static 'img/others/about.jpg' %}" alt="">
+                        <img src="{% if about.image.url %}
+                        {{about.image.url}}
+                        {% else %}
+                        {% static 'img/others/about.jpg' %}
+                        {% endif %}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="about-description mt-50">
+                        {% if about.description %}
+                        <p>{{about.description|linebreaks }}</p>
+                        {% else %}
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labo
                         et dolore magn aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia is be deserunt mollit anim est laborum. Sed ut perspiciatis unde omnis iste natus error sit. voluptatem accusantium doloremque laudantium,</p>
-
-                        <p>totam remes aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -66,12 +78,13 @@
                 </div>
                 <div class="">
                     <div class="about-description mt-30 mb-60">
+                        {% if about.mission %}
+                        <p>{{about.mission|linebreaks }}</p>
+                        {% else %}
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labo
                         et dolore magn aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-
-                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia is be deserunt mollit anim est laborum. Sed ut perspiciatis unde omnis iste natus error sit. voluptatem accusantium doloremque laudantium,</p>
-
-                        <p>totam remes aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam.</p>
+                        {% endif %}
+                       
                     </div>
                 </div>
             </div>

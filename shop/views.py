@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.conf import settings
 from django.contrib import messages
+from django.template.loader import render_to_string
+from django.http import HttpResponse
 import json
 
-from .models import Product,Payment,Category,Order,OrderItem, FeedBack
+from .models import Product,Payment,Category,Order,OrderItem, FeedBack, AboutPageContent, NewsFeedUpdate
 
 
 
@@ -16,26 +18,34 @@ def home_page(request):
     # Fetch the 'courses' category only once
     courses_category = Category.objects.get(name='courses')
     
+    updates = NewsFeedUpdate.objects.all().order_by('-created_at')[:2]
+    
     # Context preparation
     context = {
         'products': products.exclude(category=courses_category)[:8], # Exclude 'courses'
         'new_products': products.filter(category=courses_category)[:5],  # Latest 5 products in 'courses'
-        'special':products.filter(special_offer=True),      
+        'special':products.filter(special_offer=True),
+        'updates': updates,  
     }
     return render(request, 'index-2.html', context)
 
 def about_page(request):
-	return render(request, 'about.html')
+    about = AboutPageContent.objects.filter(current=True).first()
+    context = {
+        'about':about,
+    }
+    return render(request, 'about.html', context)
 
 def contact_page(request):
 	return render(request, 'contact.html')
 
 def products_page(request):
-	products = Product.objects.all().order_by('-updated_at')
-	context = {
+    courses_category = Category.objects.get(name='courses')
+    products = Product.objects.exclude(category=courses_category).order_by('-updated_at')
+    context = {
 	'products':products,
 	}
-	return render(request, 'shop.html', context)
+    return render(request, 'shop.html', context)
 
 def courses_page(request):
     # Fetch the 'courses' category only once
@@ -61,12 +71,13 @@ def cart_page(request):
 def product_detail_page(request, id):
     product = get_object_or_404(Product, pk=id)
     if product.category == Category.objects.get(name='courses'):
-        template_name = 'course.html'
+        title = 'courses'
     else:
-        template_name = 'shop.html'
+        title = 'products'
     
-    return render(request, template_name, {
+    return render(request, 'single-product.html', {
         'product': product,
+        'title': title,
     })
 
 def product_category_id(request, pk):
@@ -100,10 +111,11 @@ def add_cart(request, pk):
 
 	cart_item = {
 		'id': str(pk),
-		'name': product.name,
+		'name': product.title,
 		'price': float(product.price),
 		'image': product.get_image(),
-		'qty': qty
+		'qty': qty,
+        'total_price': float(product.price) * qty,
 	}
 
 	# Update or add cart item
@@ -114,20 +126,73 @@ def add_cart(request, pk):
 		cart.append(cart_item)
 
 	request.session[settings.CART_ID] = json.dumps(cart)
-	messages.success(f"Cart updated: Added {qty} of product {pk}")
+	messages.success(request, f"Cart updated: Added {qty} of product {pk}")
 
 	return redirect(referer_url)
+
+def remove_cart(request, pk):
+    cart = _get_cart_items(request)
+    referer_url = request.META.get('HTTP_REFERER', '/')
+    
+    # Find the item in the cart
+    existing_item = next((item for item in cart if item['id'] == str(pk)), None)
+    
+    if existing_item:
+        # Check if quantity parameter is provided
+        qty_to_remove = int(request.GET.get('quantity', 0))
+        
+        if qty_to_remove <= 0 or qty_to_remove >= existing_item['qty']:
+            # Remove the entire item if qty_to_remove is 0 or greater than existing
+            cart = [item for item in cart if item['id'] != str(pk)]
+            messages.success(request, f"Product {pk} removed from cart")
+        else:
+            # Reduce the quantity and update total price
+            existing_item['qty'] -= qty_to_remove
+            existing_item['total_price'] = float(existing_item['price']) * existing_item['qty']
+            messages.success(request, f"Cart updated: Removed {qty_to_remove} of product {pk}")
+    
+    # Update the session
+    request.session[settings.CART_ID] = json.dumps(cart)
+    
+    return render(request, 'cart_row.html')
 
 def view_cart(request):
     tab = 'cart'
     cart_items = _get_cart_items(request)
-    total_price = sum(item.get('qty', 0) * float(item.get('price', 0)) for item in cart_items)
+    total_price = sum(item.get('total_price', 0)  for item in cart_items)
     
     return render(request, 'cart.html', {
         'cart_items': cart_items,
         'total_price': total_price,
         'tab':tab,
     })
+
+
+def update_cart_qty(request, pk):
+    if request.method != 'POST':
+        return HttpResponse(status=405)  # Method Not Allowed
+
+    cart = _get_cart_items(request)
+    item = next((item for item in cart if item['id'] == str(pk)), None)
+    operation = request.GET.get('operation')
+
+    if not item:
+        return HttpResponse(status=404)  # Item not found in cart
+
+    # Update the quantity based on the operation
+    if operation == 'increment':
+        item['qty'] += 1
+    elif operation == 'decrement' and item['qty'] > 1:
+        item['qty'] -= 1
+
+    # Update the total price for the item
+    item['total_price'] = float(item['price']) * int(item['qty'])
+
+    # Save the updated cart to the session
+    request.session[settings.CART_ID] = json.dumps(cart)
+
+    # Render the updated row using a partial template
+    return render(request, 'cart_row.html', {'item': item})
 
 
 
@@ -160,7 +225,7 @@ def check_out(request):
         
         # Clear cart after order processing
         request.session[settings.CART_ID] = json.dumps([])
-        messages.success(f"Order processed. Total: {total_price}")
+        messages.success(request, f"Order processed. Total: {total_price}")
         
         # Redirect to Paystack payment page
         # return render(request, 'paystack_payment.html', {

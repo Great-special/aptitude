@@ -76,32 +76,56 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- tr -->
-                                                <tr>
+                                                {% for item in cart_items %}
+                                                  <!-- tr -->
+                                                  <tr>
                                                     <td class="product-thumbnail">
                                                         <div class="pro-thumbnail-img">
-                                                            <img src="img/cart/1.jpg" alt="">
+                                                            <img src="{{item.image}}" alt="">
                                                         </div>
                                                         <div class="pro-thumbnail-info text-start">
                                                             <h6 class="product-title-2">
-                                                                <a href="#">dummy product name</a>
+                                                                <a href="#">{{item.name}}</a>
                                                             </h6>
-                                                            <p>Brand: Brand Name</p>
-                                                            <p>Model: Grand s2</p>
+                                                            <p>Brand: {{item.category}}</p>
                                                             <p> Color: Black, White</p>
                                                         </div>
                                                     </td>
-                                                    <td class="product-price">$560.00</td>
+                                                    <td class="product-price">${{item.price}}</td>
                                                     <td class="product-quantity">
-                                                        <div class="cart-plus-minus f-left">
-                                                            <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                                        </div> 
-                                                    </td>
-                                                    <td class="product-subtotal">$1020.00</td>
+                                                        <div class="quantity-control">
+                                                            <button type="button"
+                                                                    hx-post="{% url 'update_cart_qty' item.id %}?operation=decrement"
+                                                                    hx-trigger="click"
+                                                                    hx-target="closest tr"
+                                                                    hx-swap="outerHTML"
+                                                                    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>-</button>
+                                                            <input type="text" 
+                                                                   value="{{ item.qty }}" 
+                                                                   readonly 
+                                                                   class="quantity-box">
+                                                            <button type="button"
+                                                                    hx-post="{% url 'update_cart_qty' item.id %}?operation=increment"
+                                                                    hx-trigger="click"
+                                                                    hx-target="closest tr"
+                                                                    hx-swap="outerHTML"
+                                                                    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>+</button>
+                                                        </div>
+                                                    </td>                                                    
+                                                    <td class="product-subtotal">${{item.total_price}}</td>
                                                     <td class="product-remove">
-                                                        <a href="#"><i class="zmdi zmdi-close"></i></a>
+                                                        <a href="#" 
+                                                           hx-delete="{% url 'remove_cart' item.id %}"
+                                                           hx-target="closest tr"
+                                                           hx-swap="outerHTML"
+                                                           hx-confirm="Are you sure you want to remove this item?"
+                                                           hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+                                                            <i class="zmdi zmdi-close"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
+                                                {% endfor %}
+                                              
 
                                             </tbody>
                                         </table>
@@ -121,7 +145,7 @@
                                                 <table>
                                                     <tr>
                                                         <td class="td-title-1">Cart Subtotal</td>
-                                                        <td class="td-title-2">$155.00</td>
+                                                        <td class="td-title-2">${{total_price}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="td-title-1">Shipping and Handing</td>

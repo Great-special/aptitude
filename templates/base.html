@@ -37,6 +37,18 @@
 
     <!-- Modernizr JS -->
     <script src="{% static 'js/vendor/modernizr-3.11.2.min.js' %}"></script>
+    <!-- Add HTMX from CDN -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    
+    <!-- Optional: Add HTMX extensions if needed -->
+    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+    
+    <!-- Optional: CSRF configuration for HTMX -->
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        });
+    </script>
 </head>
 
 <body>
@@ -110,9 +122,13 @@
                                     <ul class="user-meta">
                                         <li><a ><i class="zmdi zmdi-view-headline"></i></a>
                                             <ul>
+                                                {% if request.user.is_authenticated %}
                                                 <li><a href="{% url "profile" %}">My Account</a></li>
                                                 <li><a href="{% url "checkout" %}">Checkout</a></li>
-                                                <li><a href="{% url "login" %}">Log in</a></li>        
+                                                <li><a href="{% url "logout" %}">Log out</a></li>
+                                                {% else %}
+                                                <li><a href="{% url "login" %}">Log in</a></li>
+                                                {% endif %}       
                                             </ul>
                                         </li>
                                     </ul>

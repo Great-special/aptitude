@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+    <table role="presentation" style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; border-collapse: collapse;">
+        <tr>
+            <td style="padding: 40px 20px; text-align: center; background-color:rgba(0, 146, 204, 0.7);">
+                <img src="{% static 'img/logo-2.png' %}" alt="Security Icon" style="width: 80px; height: 80px;">
+            </td>
+        </tr>
+        <tr>
+            {% block content %}
+           
+            {% endblock content %}
+        </tr>
+        <tr>
+            <td style="padding: 20px; text-align: center; background-color: #f8f8f8;">
+                <p style="color: #999999; font-size: 14px; margin: 0;">This is an automated message, please do not reply.</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -984,6 +984,31 @@ course card
 
 
 
+.quantity-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.quantity-control button {
+  padding: 5px 10px;
+  border: none;
+  background: rgb(199, 197, 197);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.quantity-control button:hover {
+  background: #e5e5e5;
+}
+
+.quantity-box {
+  width: 50px;
+  text-align: center;
+  border: none;
+  padding: 5px;
+}
 
 
 /* -------------------------------------

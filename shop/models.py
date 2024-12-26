@@ -108,6 +108,27 @@ class NewsFeedUpdate(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     
+    def __str__(self):
+        return self.title
+
+
+class AboutPageContent(models.Model):
+    title = models.CharField(max_length=100)
+    subtitle = models.CharField(max_length=100)
+    description = models.TextField()
+    current = models.BooleanField(default=False)
+    our_mission = models.TextField()
+    image = models.ImageField(upload_to='about/')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+    def save(self, *args, **kwargs):
+        # If this instance is set to current, unset others
+        if self.current:
+            AboutPageContent.objects.filter(current=True).update(current=False)
+        super().save(*args, **kwargs)  # Call the original save method
+    
     
     def __str__(self):
         return self.title
