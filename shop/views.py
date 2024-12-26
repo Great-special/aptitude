@@ -16,8 +16,10 @@ def home_page(request):
     products = Product.objects.all().order_by('-updated_at')
     
     # Fetch the 'courses' category only once
-    courses_category = Category.objects.get(name='courses')
-    
+    try:
+        courses_category = Category.objects.get(name='courses')
+    except:
+        courses_category = None
     updates = NewsFeedUpdate.objects.all().order_by('-created_at')[:2]
     
     # Context preparation
@@ -40,7 +42,10 @@ def contact_page(request):
 	return render(request, 'contact.html')
 
 def products_page(request):
-    courses_category = Category.objects.get(name='courses')
+    try:
+        courses_category = Category.objects.get(name='courses')
+    except:
+        courses_category = None
     products = Product.objects.exclude(category=courses_category).order_by('-updated_at')
     context = {
 	'products':products,
@@ -49,12 +54,16 @@ def products_page(request):
 
 def courses_page(request):
     # Fetch the 'courses' category only once
-	courses_category = Category.objects.get(name='courses')
-	products = Product.objects.filter(category=courses_category).all()
-	context = {
-	'courses':products,
-	}
-	return render(request, 'course.html', context)
+    try:
+        courses_category = Category.objects.get(name='courses')
+    except:
+        courses_category = None
+    products = Product.objects.filter(category=courses_category).all()
+    
+    context = {
+    'courses':products,
+    }
+    return render(request, 'course.html', context)
 
 
 def cart_page(request):
